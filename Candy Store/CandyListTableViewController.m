@@ -89,7 +89,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-//    [self.tableView reloadData];
+    [self.tableView reloadData];
     
     // get access to the managed object context
     NSManagedObjectContext *context = ((AppDelegate *)[UIApplication sharedApplication].delegate).managedObjectContext;
@@ -125,6 +125,7 @@
     if (error) {
         //error
     }
+    
     [self.candies removeObjectAtIndex:indexPath.row];
     // Delete entry in the UI.
     [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
