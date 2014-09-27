@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CandyEnlargedImageViewController : UIViewController
+@interface CandyEnlargedImageViewController : UIViewController <UIScrollViewDelegate>
+
+@property(nonatomic, strong) UIImage *image;
 
 @end

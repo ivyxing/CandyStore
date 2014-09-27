@@ -8,6 +8,7 @@
 
 #import "CandyDetailViewController.h"
 #import "CandyMapViewController.h"
+#import "CandyEnlargedImageViewController.h"
 #import "Candy.h"
 #import "AppDelegate.h"
 
@@ -18,7 +19,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *takePhotoButton;
 @property (weak, nonatomic) IBOutlet UIButton *choosePhotoButton;
 @property (weak, nonatomic) IBOutlet UIButton *imageAsButton;
-
 
 @property (nonatomic, retain) UIImagePickerController *imgPicker;
 
@@ -43,6 +43,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Table view data source
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
@@ -56,6 +58,8 @@
         [self.mapButton setTitle:@"Pin on Map" forState:UIControlStateNormal];
     }
 }
+
+#pragma mark - User Interaction
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -71,6 +75,13 @@
     }
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"EnlargeImage"]) {
+        CandyEnlargedImageViewController *enlargedImageViewController = segue.destinationViewController;
+        enlargedImageViewController.image = self.imageAsButton.currentBackgroundImage;
+    }
+}
+        
 - (IBAction)choosePhoto:(id)sender {
     self.imgPicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     [self presentViewController:self.imgPicker animated:YES completion:nil];
@@ -81,10 +92,10 @@
     [self presentViewController:self.imgPicker animated:YES completion:nil];
 }
 
-
 - (void)imagePickerController:(UIImagePickerController *)picker
         didFinishPickingImage:(UIImage *)img editingInfo:(NSDictionary *)editInfo {
-    [self.imageAsButton setBackgroundImage:img forState:UIControlStateNormal];;
+    [self.imageAsButton setBackgroundImage:img forState:UIControlStateNormal];
+    self.candy.imageData = UIImagePNGRepresentation(img);
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -110,23 +121,13 @@
     
     // Get the NSManagedObject context.
     NSManagedObjectContext *context = ((AppDelegate *)[UIApplication sharedApplication].delegate).managedObjectContext;
-    // create an error variable to pass to the save method
+    // Create an error variable to pass to the save method.
     NSError *error = nil;
-    // attempt to save the context and persist our changes
+    // Attempt to save the context and persist our changes.
     [context save:&error];
     if (error) {
-        //error handling, e.g. display error to user
+        // Error handling, e.g. display error to user.
     }
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

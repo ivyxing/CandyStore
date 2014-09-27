@@ -13,6 +13,8 @@
 		2817D01319CA570D0055BC8A /* CandyEnlargedImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2817D01219CA570D0055BC8A /* CandyEnlargedImageViewController.m */; };
 		2817D01919CA57B10055BC8A /* CandyMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2817D01819CA57B10055BC8A /* CandyMapViewController.m */; };
 		2860249819D1FE9F0080D938 /* Candy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2860249719D1FE9F0080D938 /* Candy.m */; };
+		2860249E19D2247D0080D938 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2860249D19D2247D0080D938 /* ChatViewController.m */; };
+		286024A119D240150080D938 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 286024A019D240150080D938 /* Message.m */; };
 		28A9C59519CFD4C600727D6A /* Annotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 28A9C59419CFD4C600727D6A /* Annotation.m */; };
 		28D8578519C8C2030082F42D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D8578419C8C2030082F42D /* main.m */; };
 		28D8578819C8C2040082F42D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D8578719C8C2040082F42D /* AppDelegate.m */; };
@@ -46,6 +48,10 @@
 		2817D01819CA57B10055BC8A /* CandyMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CandyMapViewController.m; path = ../CandyMapViewController.m; sourceTree = "<group>"; };
 		2860249619D1FE9F0080D938 /* Candy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Candy.h; sourceTree = "<group>"; };
 		2860249719D1FE9F0080D938 /* Candy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Candy.m; sourceTree = "<group>"; };
+		2860249C19D2247D0080D938 /* ChatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatViewController.h; sourceTree = "<group>"; };
+		2860249D19D2247D0080D938 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
+		2860249F19D240150080D938 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		286024A019D240150080D938 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Message.m; sourceTree = "<group>"; };
 		28A9C59319CFD4C600727D6A /* Annotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Annotation.h; sourceTree = "<group>"; };
 		28A9C59419CFD4C600727D6A /* Annotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Annotation.m; sourceTree = "<group>"; };
 		28D8577F19C8C2030082F42D /* Candy Store.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Candy Store.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,6 +128,10 @@
 				2817D01819CA57B10055BC8A /* CandyMapViewController.m */,
 				28A9C59319CFD4C600727D6A /* Annotation.h */,
 				28A9C59419CFD4C600727D6A /* Annotation.m */,
+				2860249C19D2247D0080D938 /* ChatViewController.h */,
+				2860249D19D2247D0080D938 /* ChatViewController.m */,
+				2860249F19D240150080D938 /* Message.h */,
+				286024A019D240150080D938 /* Message.m */,
 				28D8579219C8C2040082F42D /* Images.xcassets */,
 				28D8579419C8C2040082F42D /* LaunchScreen.xib */,
 				28D8578919C8C2040082F42D /* Candy_Store.xcdatamodeld */,
@@ -257,7 +267,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				28A9C59519CFD4C600727D6A /* Annotation.m in Sources */,
+				286024A119D240150080D938 /* Message.m in Sources */,
 				2817D01919CA57B10055BC8A /* CandyMapViewController.m in Sources */,
+				2860249E19D2247D0080D938 /* ChatViewController.m in Sources */,
 				2817D01319CA570D0055BC8A /* CandyEnlargedImageViewController.m in Sources */,
 				28D8578819C8C2040082F42D /* AppDelegate.m in Sources */,
 				28D8578519C8C2030082F42D /* main.m in Sources */,

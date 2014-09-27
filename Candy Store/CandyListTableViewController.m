@@ -51,7 +51,6 @@
 //}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
     return [self.candies count];
 }
@@ -60,7 +59,8 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CandyCell" forIndexPath:indexPath];
     
     cell.textLabel.text = [self.candies[indexPath.row] name];
-//    cell.imageView.image = [self.candies[indexPath.row] image];
+//    UIImage *img = UIImagePNGRepresentation([self.candies[indexPath.row] name]);
+//    cell.imageView.image = img;
     
     return cell;
 }
@@ -74,15 +74,12 @@
         // Change detail view state to view only.
         candyDetailViewController.state = DetailViewStateReadOnly;
     } else if ([segue.identifier isEqualToString:@"AddCandy"]) {
-        // Show add candy detail view.
-//        Candy *candy = [Candy new];
-        // get access to the managed object context
+        // Get access to the managed object context.
         NSManagedObjectContext *context = ((AppDelegate *)[UIApplication sharedApplication].delegate).managedObjectContext;
-        // create a new object using the entity description
+        // Create a new object using the entity description.
         Candy *candy = [NSEntityDescription insertNewObjectForEntityForName:@"Candy" inManagedObjectContext:context];
         CandyDetailViewController *candyDetailViewController = [segue destinationViewController];
         candyDetailViewController.candy = candy;
-        // Change detail view state to allow edit.
         candyDetailViewController.state = DetailViewStateReadAndWrite;
     }
 }
@@ -91,25 +88,24 @@
     [super viewWillAppear:animated];
     [self.tableView reloadData];
     
-    // get access to the managed object context
+    // Get access to the managed object context.
     NSManagedObjectContext *context = ((AppDelegate *)[UIApplication sharedApplication].delegate).managedObjectContext;
-    // get entity description for entity we are selecting
+    // Create a new object using the entity description.
     NSEntityDescription *entityDescription = [NSEntityDescription
                                               entityForName:@"Candy" inManagedObjectContext:context];
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:entityDescription];
     
-    // create an error variable to pass to the execute method
+    // Create an error variable to pass to the execute method.
     NSError *error;
-    // retrieve results
+    // Retrieve results.
     NSArray *array = [context executeFetchRequest:request error:&error];
     if (array == nil) {
-        //error handling, e.g. display error to user
+        // Error handling, e.g. display error to user.
     }
     
     self.candies = [array mutableCopy];
 }
-
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -118,61 +114,18 @@
     // Get and delete object
     Candy *candy = [self.candies objectAtIndex:indexPath.row];
     [context deleteObject:candy];
-    // create an error variable to pass to the save method
+    // Create an error variable to pass to the save method.
     NSError *error = nil;
-    // attempt to save the context and persist our changes
+    // Attempt to save the context and persist our changes.
     [context save:&error];
     if (error) {
-        //error
+        //Error
     }
     
+    // Delete entry in the array.
     [self.candies removeObjectAtIndex:indexPath.row];
     // Delete entry in the UI.
     [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
