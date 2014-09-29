@@ -10,6 +10,6 @@
 
 @interface CandyEnlargedImageViewController : UIViewController <UIScrollViewDelegate>
 
-@property(nonatomic, strong) UIImage *image;
+@property(strong, nonatomic) UIImage *image;
 
 @end

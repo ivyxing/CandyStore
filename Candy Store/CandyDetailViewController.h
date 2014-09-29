@@ -7,18 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+@class Candy;
 
-typedef NS_ENUM(NSInteger, DetailViewState) {
-    DetailViewStateReadOnly,
-    DetailViewStateReadAndWrite
+typedef NS_ENUM(NSInteger, CandyDetailViewControllerViewState) {
+    CandyDetailViewControllerViewStateReadOnly,
+    CandyDetailViewControllerViewStateEdit
 };
 
-@class Candy;
 
 @interface CandyDetailViewController : UIViewController
 <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate>
 
-@property (nonatomic, strong) Candy *candy;
-@property (nonatomic, assign) DetailViewState state;
+@property (strong, nonatomic) Candy *candy;
+@property (assign, nonatomic) CandyDetailViewControllerViewState state;
 
 @end

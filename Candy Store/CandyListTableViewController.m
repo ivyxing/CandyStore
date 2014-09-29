@@ -17,21 +17,6 @@
 
 @implementation CandyListTableViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     
@@ -42,13 +27,33 @@
     return self;
 }
 
-#pragma mark - Table view data source
+#pragma mark - View Lifecycle
 
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//#warning Potentially incomplete method implementation.
-//    // Return the number of sections.
-//    return 1;
-//}
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    // Get access to the managed object context.
+    NSManagedObjectContext *context = ((AppDelegate *)[UIApplication sharedApplication].delegate).managedObjectContext;
+    // Create a new object using the entity description.
+    NSEntityDescription *entityDescription = [NSEntityDescription
+                                              entityForName:@"Candy" inManagedObjectContext:context];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setEntity:entityDescription];
+    
+    // Create an error variable to pass to the execute method.
+    NSError *error;
+    // Retrieve results.
+    NSArray *array = [context executeFetchRequest:request error:&error];
+    if (array == nil) {
+        // Error handling, e.g. display error to user.
+    }
+    
+    self.candies = [array mutableCopy];
+    
+    [self.tableView reloadData];
+}
+
+#pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
@@ -72,7 +77,7 @@
         NSIndexPath *selectedIndexPath = self.tableView.indexPathForSelectedRow;
         candyDetailViewController.candy = self.candies[selectedIndexPath.row];
         // Change detail view state to view only.
-        candyDetailViewController.state = DetailViewStateReadOnly;
+        candyDetailViewController.state = CandyDetailViewControllerViewStateReadOnly;
     } else if ([segue.identifier isEqualToString:@"AddCandy"]) {
         // Get access to the managed object context.
         NSManagedObjectContext *context = ((AppDelegate *)[UIApplication sharedApplication].delegate).managedObjectContext;
@@ -80,32 +85,10 @@
         Candy *candy = [NSEntityDescription insertNewObjectForEntityForName:@"Candy" inManagedObjectContext:context];
         CandyDetailViewController *candyDetailViewController = [segue destinationViewController];
         candyDetailViewController.candy = candy;
-        candyDetailViewController.state = DetailViewStateReadAndWrite;
+        candyDetailViewController.state = CandyDetailViewControllerViewStateEdit;
     }
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self.tableView reloadData];
-    
-    // Get access to the managed object context.
-    NSManagedObjectContext *context = ((AppDelegate *)[UIApplication sharedApplication].delegate).managedObjectContext;
-    // Create a new object using the entity description.
-    NSEntityDescription *entityDescription = [NSEntityDescription
-                                              entityForName:@"Candy" inManagedObjectContext:context];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:entityDescription];
-    
-    // Create an error variable to pass to the execute method.
-    NSError *error;
-    // Retrieve results.
-    NSArray *array = [context executeFetchRequest:request error:&error];
-    if (array == nil) {
-        // Error handling, e.g. display error to user.
-    }
-    
-    self.candies = [array mutableCopy];
-}
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     

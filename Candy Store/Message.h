@@ -10,10 +10,10 @@
 
 @interface Message : NSObject
 
-@property (nonatomic, copy) NSString *content;
-@property (nonatomic, copy) NSString *username;
+@property (copy, nonatomic) NSString *content;
+@property (copy, nonatomic) NSString *username;
 
-+ (instancetype)msgWithJSONDictionary:(NSDictionary *)dictionary;
-- (NSDictionary*) toDictionary;
++ (instancetype) messageWithJSONDictionary:(NSDictionary *)dictionary;
+- (NSDictionary*) messageToJSONDictionary;
 
 @end

@@ -12,8 +12,9 @@
 @interface Annotation : NSObject <MKAnnotation>
 
 @property (copy, nonatomic) NSString *title;
-@property (nonatomic, assign) CLLocationCoordinate2D coordinate;
+@property (assign, nonatomic) CLLocationCoordinate2D coordinate;
 
 -(id) initWithCoordinate:(CLLocationCoordinate2D)coordinate title:(NSString *)title;
+
 @end
 

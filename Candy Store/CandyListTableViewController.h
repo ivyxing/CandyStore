@@ -10,6 +10,6 @@
 
 @interface CandyListTableViewController : UITableViewController
 
-@property (nonatomic, strong) NSMutableArray *candies;
+@property (strong, nonatomic) NSMutableArray *candies;
 
 @end

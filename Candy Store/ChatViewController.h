@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Message.h"
 
 @interface ChatViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, NSURLSessionDataDelegate>
 
-@property (nonatomic, strong) NSMutableArray *messages;
+@property (strong, nonatomic) NSMutableArray *messages;
 
 - (void)addToArrayJSONDictionary:(NSArray *)msgArray;
 

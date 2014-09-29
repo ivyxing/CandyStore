@@ -23,13 +23,8 @@
     [self.imageView setImage:self.image];
     self.scrollView.minimumZoomScale = 0.5;
     self.scrollView.maximumZoomScale = 6.0;
-    self.scrollView.contentSize = CGSizeMake(1280, 960);
+    self.scrollView.contentSize = self.image.size;
     self.scrollView.delegate = self;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView

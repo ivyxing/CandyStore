@@ -10,16 +10,16 @@
 
 @implementation Message
 
-+ (instancetype)msgWithJSONDictionary:(NSDictionary *)dictionary {
++ (instancetype)messageWithJSONDictionary:(NSDictionary *)dictionary {
     Message *msg = [Message new];
     msg.username = dictionary[@"username"];
     msg.content = dictionary[@"content"];
 
     return msg;
 }
-- (NSDictionary*) toDictionary {
-    NSDictionary* newDic = @{@"username":self.username, @"content":self.content};
-    return newDic;
+- (NSDictionary*) messageToJSONDictionary {
+    NSDictionary* newDictionary = @{@"username":self.username, @"content":self.content};
+    return newDictionary;
 }
 
 @end

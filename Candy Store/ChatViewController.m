@@ -7,8 +7,10 @@
 //
 
 #import "ChatViewController.h"
+#import "Message.h"
 
 @interface ChatViewController ()
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 
@@ -19,21 +21,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.messages = [NSMutableArray array];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    self.messages = [NSMutableArray array];
 }
 
 #pragma mark - User Interaction
@@ -42,16 +32,18 @@
     Message *msg = [Message new];
     msg.username = @"Test-ReturnButton";
     msg.content = self.textField.text;
-    [self sendMessageToServer:[msg toDictionary]];
+    [self sendMessageToServer:[msg messageToJSONDictionary]];
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+    // Hide keyboard.
     [self.textField resignFirstResponder];
+    // Store message attributes and send message.
     Message *msg = [Message new];
     msg.username = @"Test-ReturnButton";
     msg.content = textField.text;
-    [self sendMessageToServer:[msg toDictionary]];
+    [self sendMessageToServer:[msg messageToJSONDictionary]];
     return YES;
 }
 
@@ -64,6 +56,7 @@
     [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request setHTTPMethod:@"POST"];
     
+    // Convert dictionary to NSData.
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionary options:0 error:nil];
 
     [request setHTTPBody:jsonData];
@@ -88,7 +81,7 @@
 
 - (void)addToArrayJSONDictionary:(NSArray *)msgArray {
     for (NSDictionary *jsonMsg in msgArray) {
-        Message *msg = [Message msgWithJSONDictionary:jsonMsg];
+        Message *msg = [Message messageWithJSONDictionary:jsonMsg];
         [self.messages insertObject:msg atIndex:0];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
@@ -98,16 +91,11 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
     return [self.messages count];
 }
 
-- (void)viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated {
     NSURL *url = [NSURL URLWithString:@"http://localhost:3000/collections/test"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30.0];
     [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];

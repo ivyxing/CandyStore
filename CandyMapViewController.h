@@ -8,17 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
-#import "Candy.h"
+@class Candy;
 
-typedef NS_ENUM(NSInteger, MapState) {
-    MapStateView,
-    MapStateEdit
+typedef NS_ENUM(NSInteger, CandyMapViewControllerViewState) {
+    CandyMapViewControllerViewStateReadOnly,
+    CandyMapViewControllerViewStateEdit
 };
 
 @interface CandyMapViewController : UIViewController <MKMapViewDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
-@property (nonatomic, assign) MapState mapState;
-@property (nonatomic, strong) Candy *candy;
+@property (assign, nonatomic) CandyMapViewControllerViewState viewState;
+@property (strong, nonatomic) Candy *candy;
 
 @end

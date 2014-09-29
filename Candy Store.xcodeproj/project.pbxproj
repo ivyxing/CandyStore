@@ -19,7 +19,6 @@
 		28D8578519C8C2030082F42D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D8578419C8C2030082F42D /* main.m */; };
 		28D8578819C8C2040082F42D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D8578719C8C2040082F42D /* AppDelegate.m */; };
 		28D8578B19C8C2040082F42D /* Candy_Store.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 28D8578919C8C2040082F42D /* Candy_Store.xcdatamodeld */; };
-		28D8578E19C8C2040082F42D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D8578D19C8C2040082F42D /* ViewController.m */; };
 		28D8579119C8C2040082F42D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28D8578F19C8C2040082F42D /* Main.storyboard */; };
 		28D8579319C8C2040082F42D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28D8579219C8C2040082F42D /* Images.xcassets */; };
 		28D8579619C8C2040082F42D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28D8579419C8C2040082F42D /* LaunchScreen.xib */; };
@@ -60,8 +59,6 @@
 		28D8578619C8C2030082F42D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		28D8578719C8C2040082F42D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		28D8578A19C8C2040082F42D /* Candy_Store.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Candy_Store.xcdatamodel; sourceTree = "<group>"; };
-		28D8578C19C8C2040082F42D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		28D8578D19C8C2040082F42D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		28D8579019C8C2040082F42D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		28D8579219C8C2040082F42D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		28D8579519C8C2040082F42D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -113,8 +110,6 @@
 			children = (
 				28D8578619C8C2030082F42D /* AppDelegate.h */,
 				28D8578719C8C2040082F42D /* AppDelegate.m */,
-				28D8578C19C8C2040082F42D /* ViewController.h */,
-				28D8578D19C8C2040082F42D /* ViewController.m */,
 				28D8578F19C8C2040082F42D /* Main.storyboard */,
 				2860249619D1FE9F0080D938 /* Candy.h */,
 				2860249719D1FE9F0080D938 /* Candy.m */,
@@ -274,7 +269,6 @@
 				28D8578819C8C2040082F42D /* AppDelegate.m in Sources */,
 				28D8578519C8C2030082F42D /* main.m in Sources */,
 				2817D00619CA00610055BC8A /* CandyListTableViewController.m in Sources */,
-				28D8578E19C8C2040082F42D /* ViewController.m in Sources */,
 				2817D00C19CA0C630055BC8A /* CandyDetailViewController.m in Sources */,
 				28D8578B19C8C2040082F42D /* Candy_Store.xcdatamodeld in Sources */,
 				2860249819D1FE9F0080D938 /* Candy.m in Sources */,

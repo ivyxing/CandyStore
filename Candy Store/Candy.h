@@ -12,9 +12,9 @@
 
 @interface Candy : NSManagedObject
 
-@property (nonatomic, retain) NSData * imageData;
-@property (nonatomic, retain) NSNumber * latitude;
-@property (nonatomic, retain) NSNumber * longitude;
-@property (nonatomic, retain) NSString * name;
+@property (strong, nonatomic) NSData * imageData;
+@property (strong, nonatomic) NSString * name;
+@property (strong, nonatomic) NSNumber * latitude;
+@property (strong, nonatomic) NSNumber * longitude;
 
 @end

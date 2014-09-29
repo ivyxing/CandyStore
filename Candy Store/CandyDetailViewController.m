@@ -25,7 +25,6 @@
 @end
 
 @implementation CandyDetailViewController
-@synthesize imgPicker;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -38,11 +37,6 @@
     self.imgPicker.delegate = self;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 #pragma mark - Table view data source
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -50,11 +44,11 @@
     
     self.nameTextField.text = self.candy.name;
     
-    if (self.state == DetailViewStateReadOnly) {
+    if (self.state == CandyDetailViewControllerViewStateReadOnly) {
         UIImage *img = [[UIImage alloc] initWithData:self.candy.imageData];
         [self.imageAsButton setBackgroundImage:img forState:UIControlStateNormal];
         [self.mapButton setTitle:@"Show on Map" forState:UIControlStateNormal];
-    } else if (self.state == DetailViewStateReadAndWrite) {
+    } else if (self.state == CandyMapViewControllerViewStateEdit) {
         [self.mapButton setTitle:@"Pin on Map" forState:UIControlStateNormal];
     }
 }
@@ -97,16 +91,6 @@
     [self.imageAsButton setBackgroundImage:img forState:UIControlStateNormal];
     self.candy.imageData = UIImagePNGRepresentation(img);
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-#pragma mark - Map Handling
-
-- (IBAction)mapButtonPressed:(id)sender {
-    if (self.state == DetailViewStateReadOnly) {
-        // Show candy location on map.
-    } else if (self.state ==  DetailViewStateReadAndWrite) {
-        // Let user pin location on map.
-    }
 }
 
 #pragma mark - Save Changes
